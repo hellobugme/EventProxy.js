@@ -12,15 +12,15 @@ JavaScript 事件代理
 ## Methods
 
 * `EventProxy.setTo(target)`
-给对象扩展事件代理
+<br/>给对象扩展事件代理
 * `EventProxy.unsetTo(target)`
-删除对象的事件代理
+<br/>删除对象的事件代理
 * `target.eventProxy.on(type, handler)`
-添加事件侦听
+<br/>添加事件侦听
 * `target.eventProxy.off(type, handler)`
-删除事件侦听
+<br/>删除事件侦听
 * `target.eventProxy.trigger(type, data)`
-触发事件
+<br/>触发事件
 
 ## Example
 
