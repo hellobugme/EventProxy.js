@@ -1,4 +1,12 @@
-﻿!(function(ns){
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<input type="button" value="TEST" id="btn" />
+<script>
+!(function(ns){
     function EventProxy(target){
         target.eventProxy = this;
         this.target = target;
@@ -55,3 +63,42 @@
         }
     };
 })(window);
+</script>
+<script>
+var btn = document.getElementById('btn');
+
+// 给对象扩展事件代理
+EventProxy.setTo(btn);
+
+// 添加事件侦听
+btn.eventProxy.on('test', function(event){
+    console.info('test trigger!', event);
+}).on('test2', function(event){
+    console.info('test2 trigger!', event);
+});
+
+btn.onclick = function(){
+    // 触发事件
+    btn.eventProxy.trigger('test', {
+        type  : 'abc',
+        value : Math.random()
+    });
+
+    btn.eventProxy.trigger({
+        type  : 'test2',
+        data  : {
+            type  : 'xyz',
+            value : -Math.random()
+        },
+        other : 'wtf'
+    });
+
+    // 删除事件侦听
+    btn.eventProxy.off('test2');
+
+    // 删除对象的事件代理
+    // EventProxy.unsetFrom(btn);
+};
+</script>
+</body>
+</html>

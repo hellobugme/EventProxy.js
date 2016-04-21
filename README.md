@@ -33,6 +33,8 @@ EventProxy.setTo(btn);
 // 添加事件侦听
 btn.eventProxy.on('test', function(event){
     console.info('test trigger!', event);
+}).on('test2', function(event){
+    console.info('test2 trigger!', event);
 });
 
 btn.onclick = function(){
@@ -42,8 +44,17 @@ btn.onclick = function(){
         value : Math.random()
     });
 
+    btn.eventProxy.trigger({
+        type  : 'test2',
+        data  : {
+            type  : 'xyz',
+            value : -Math.random()
+        },
+        other : 'wtf'
+    });
+
     // 删除事件侦听
-    // btn.eventProxy.off('test');
+    btn.eventProxy.off('test2');
 
     // 删除对象的事件代理
     // EventProxy.unsetFrom(btn);
