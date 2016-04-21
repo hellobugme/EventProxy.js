@@ -28,7 +28,7 @@
             return this;
         },
         trigger : function(event){
-            if(typeof event === 'string') event = { type : event };
+            if(typeof event !== 'object') event = { type : event };
             if(arguments.length > 1) event.data = arguments[1];
             if(this.handlers[event.type] instanceof Array){
                 event.target = this.target;
